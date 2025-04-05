@@ -1,0 +1,12 @@
+﻿services:
+  apigatewayhackaton:
+    image: apigatewayhackaton
+    build:
+      context: .
+      dockerfile: APIGatewayHackaton/Dockerfile
+
+  authservice:
+    image: authservice
+    build:
+      context: .
+      dockerfile: AuthService/Dockerfile

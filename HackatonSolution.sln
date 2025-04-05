@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\APIGateway.csproj", "{07914876-E490-481D-91AE-9E584C9FA56C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9592B21F-49F6-4A13-9962-10EE3AC3B817}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthService", "AuthService\AuthService.csproj", "{42354A79-75BB-44CB-A107-DD43624313E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07914876-E490-481D-91AE-9E584C9FA56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07914876-E490-481D-91AE-9E584C9FA56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07914876-E490-481D-91AE-9E584C9FA56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07914876-E490-481D-91AE-9E584C9FA56C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42354A79-75BB-44CB-A107-DD43624313E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42354A79-75BB-44CB-A107-DD43624313E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42354A79-75BB-44CB-A107-DD43624313E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42354A79-75BB-44CB-A107-DD43624313E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+EndGlobal
