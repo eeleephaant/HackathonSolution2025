@@ -25,6 +25,6 @@ Edit this or add to root of json config:
 ```json
   "AI": {
     "Endpoint": "http://localhost:12345/",
-    "Model": "gemma3:1b"
+    "Model": "llama3"
   }
 ```
