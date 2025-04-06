@@ -16,10 +16,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"))
-    .ConfigureHttpClient((_, handler) =>
-    {
-        handler.AllowAutoRedirect = false;
-    });
+    .ConfigureHttpClient((_, handler) => { handler.AllowAutoRedirect = false; });
 
 builder.Services.Configure<ForwarderRequestConfig>(config =>
 {
@@ -28,20 +25,13 @@ builder.Services.Configure<ForwarderRequestConfig>(config =>
         ActivityTimeout = TimeSpan.FromMinutes(30)
     };
 });
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.Listen(IPAddress.Any, 8000);
-});
-
-
+builder.WebHost.ConfigureKestrel(options => { options.Listen(IPAddress.Any, 8000); });
 
 
 var app = builder.Build();
 app.UseCors("customPolicy");
 
 app.UseMiddleware<TokenForwardingMiddleware>();
-
-
 
 app.MapReverseProxy().RequireCors("customPolicy");
 

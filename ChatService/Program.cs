@@ -32,6 +32,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.WebHost.ConfigureKestrel(options => { options.Listen(IPAddress.Any, 5333); });
+builder.Services.AddHttpClient();
 
 
 var app = builder.Build();

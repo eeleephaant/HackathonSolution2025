@@ -34,6 +34,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<HackatonContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("postgres"))
 );
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
