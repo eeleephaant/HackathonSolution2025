@@ -10,3 +10,27 @@
     build:
       context: .
       dockerfile: AuthService/Dockerfile
+
+  userservice:
+    image: userservice
+    build:
+      context: .
+      dockerfile: UserService/Dockerfile
+
+  startupservice:
+    image: startupservice
+    build:
+      context: .
+      dockerfile: StartupService/Dockerfile
+
+  chatservice:
+    image: chatservice
+    build:
+      context: .
+      dockerfile: ChatService/Dockerfile
+
+  notificationservice:
+    image: notificationservice
+    build:
+      context: .
+      dockerfile: NotificationService/Dockerfile

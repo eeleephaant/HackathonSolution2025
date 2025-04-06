@@ -1,25 +1,48 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using System.Net;
+using APIGatewayHackaton.Middleware;
+using Yarp.ReverseProxy.Forwarder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddReverseProxy()
-    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("customPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => {
-        options.Authority = "http://localhost:5000"; // AuthService ip:port
-        options.TokenValidationParameters = new TokenValidationParameters {
-            ValidateAudience = false
-        };
+builder.Services.AddReverseProxy()
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"))
+    .ConfigureHttpClient((_, handler) =>
+    {
+        handler.AllowAutoRedirect = false;
     });
 
-builder.Services.AddAuthorization();
+builder.Services.Configure<ForwarderRequestConfig>(config =>
+{
+    config = new ForwarderRequestConfig
+    {
+        ActivityTimeout = TimeSpan.FromMinutes(30)
+    };
+});
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Listen(IPAddress.Any, 8000);
+});
+
+
+
 
 var app = builder.Build();
+app.UseCors("customPolicy");
 
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapReverseProxy();
+app.UseMiddleware<TokenForwardingMiddleware>();
+
+
+
+app.MapReverseProxy().RequireCors("customPolicy");
 
 app.Run();
