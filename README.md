@@ -1,2 +1,3 @@
 # HACKATHON SOLUTION 2025
-## 1ST PLACE
+## 1st place
+## Grand Prix
